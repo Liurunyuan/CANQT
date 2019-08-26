@@ -582,7 +582,7 @@ DWORD test::ReceiveThread(LPVOID lpParam)
 	{
 		if (dlg->m_bExit)
 			break;
-
+		qDebug() << "recevie thread";
 		len = VCI_Receive(dlg->m_devtype, dlg->m_index, dlg->m_cannum, frameinfo, 50, 200);
 		if (len <= 0)
 		{
