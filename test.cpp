@@ -482,6 +482,7 @@ void test::OnButtonSend()
 	{
 		// ShowInfo("写入失败",2);	
 		qDebug() << "111112333" << ret;
+		//need to ask why failed to transimit, the erro code is ACK failed
 		DWORD err = GetLastError();
 		qDebug() << err;
 		VCI_ERR_INFO errinfo;
