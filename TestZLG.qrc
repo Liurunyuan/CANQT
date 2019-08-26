@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/TestZLG">
+        <file>Resources/test_cn.qm</file>
+        <file>Resources/test_en.qm</file>
+    </qresource>
+</RCC>
