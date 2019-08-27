@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>703</width>
-    <height>458</height>
+    <width>1300</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -27,8 +27,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>703</width>
-    <height>458</height>
+    <width>2222</width>
+    <height>2222</height>
    </size>
   </property>
   <property name="sizeIncrement">
@@ -386,9 +386,9 @@
   <widget class="QGroupBox" name="groupBox_3">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>170</y>
-     <width>651</width>
+     <x>590</x>
+     <y>80</y>
+     <width>691</width>
      <height>101</height>
     </rect>
    </property>
@@ -534,9 +534,9 @@
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>280</y>
-     <width>681</width>
+     <x>20</x>
+     <y>190</y>
+     <width>1221</width>
      <height>171</height>
     </rect>
    </property>
@@ -548,7 +548,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>661</width>
+      <width>1201</width>
       <height>141</height>
      </rect>
     </property>
@@ -558,30 +558,30 @@
     <property name="midLineWidth">
      <number>0</number>
     </property>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>0</number>
+    </attribute>
     <attribute name="horizontalHeaderDefaultSectionSize">
      <number>200</number>
     </attribute>
-    <attribute name="horizontalHeaderMinimumSectionSize">
+    <attribute name="verticalHeaderMinimumSectionSize">
      <number>0</number>
     </attribute>
     <attribute name="verticalHeaderDefaultSectionSize">
      <number>30</number>
     </attribute>
-    <attribute name="verticalHeaderMinimumSectionSize">
-     <number>0</number>
-    </attribute>
    </widget>
   </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>50</y>
-     <width>81</width>
-     <height>91</height>
+     <x>600</x>
+     <y>30</y>
+     <width>158</width>
+     <height>26</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
      <widget class="QPushButton" name="BtnStart">
       <property name="text">
@@ -598,7 +598,25 @@
     </item>
    </layout>
   </widget>
+  <widget class="QCustomPlot" name="curve" native="true">
+   <property name="geometry">
+    <rect>
+     <x>29</x>
+     <y>389</y>
+     <width>1181</width>
+     <height>341</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header location="global">qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

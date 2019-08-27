@@ -21,8 +21,8 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableWidget>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <qcustomplot.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -74,24 +74,25 @@ public:
     QPushButton *BtnSend;
     QGroupBox *groupBox_4;
     QTableWidget *tableWidget;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout_2;
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout_4;
     QPushButton *BtnStart;
     QPushButton *BtnReset;
+    QCustomPlot *curve;
 
     void setupUi(QDialog *Dialog)
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QString::fromUtf8("Dialog"));
         Dialog->setEnabled(true);
-        Dialog->resize(703, 458);
-        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        Dialog->resize(1300, 800);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Dialog->sizePolicy().hasHeightForWidth());
         Dialog->setSizePolicy(sizePolicy);
         Dialog->setMinimumSize(QSize(703, 458));
-        Dialog->setMaximumSize(QSize(703, 458));
+        Dialog->setMaximumSize(QSize(2222, 2222));
         Dialog->setSizeIncrement(QSize(0, 0));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\226\260\345\256\213\344\275\223"));
@@ -252,7 +253,7 @@ public:
 
         groupBox_3 = new QGroupBox(Dialog);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
-        groupBox_3->setGeometry(QRect(10, 170, 651, 101));
+        groupBox_3->setGeometry(QRect(590, 80, 691, 101));
         horizontalLayoutWidget_4 = new QWidget(groupBox_3);
         horizontalLayoutWidget_4->setObjectName(QString::fromUtf8("horizontalLayoutWidget_4"));
         horizontalLayoutWidget_4->setGeometry(QRect(10, 10, 673, 41));
@@ -331,32 +332,35 @@ public:
 
         groupBox_4 = new QGroupBox(Dialog);
         groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
-        groupBox_4->setGeometry(QRect(0, 280, 681, 171));
+        groupBox_4->setGeometry(QRect(20, 190, 1221, 171));
         tableWidget = new QTableWidget(groupBox_4);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 20, 661, 141));
+        tableWidget->setGeometry(QRect(10, 20, 1201, 141));
         tableWidget->setLineWidth(1);
         tableWidget->setMidLineWidth(0);
         tableWidget->horizontalHeader()->setMinimumSectionSize(0);
         tableWidget->horizontalHeader()->setDefaultSectionSize(200);
         tableWidget->verticalHeader()->setMinimumSectionSize(0);
         tableWidget->verticalHeader()->setDefaultSectionSize(30);
-        verticalLayoutWidget = new QWidget(Dialog);
-        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(610, 50, 81, 91));
-        verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        BtnStart = new QPushButton(verticalLayoutWidget);
+        layoutWidget = new QWidget(Dialog);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(600, 30, 158, 26));
+        horizontalLayout_4 = new QHBoxLayout(layoutWidget);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        BtnStart = new QPushButton(layoutWidget);
         BtnStart->setObjectName(QString::fromUtf8("BtnStart"));
 
-        verticalLayout_2->addWidget(BtnStart);
+        horizontalLayout_4->addWidget(BtnStart);
 
-        BtnReset = new QPushButton(verticalLayoutWidget);
+        BtnReset = new QPushButton(layoutWidget);
         BtnReset->setObjectName(QString::fromUtf8("BtnReset"));
 
-        verticalLayout_2->addWidget(BtnReset);
+        horizontalLayout_4->addWidget(BtnReset);
 
+        curve = new QCustomPlot(Dialog);
+        curve->setObjectName(QString::fromUtf8("curve"));
+        curve->setGeometry(QRect(29, 389, 1181, 341));
 
         retranslateUi(Dialog);
 

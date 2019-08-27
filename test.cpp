@@ -99,6 +99,13 @@ test::test(QWidget *parent) : QDialog(parent), m_bFlag(1)
 
 	tableWidget->horizontalHeader()->setStretchLastSection(true);//关键
 
+
+	/*lry begin to init the plot*/
+	ui.curve->xAxis->setRange(0, 10);
+	ui.curve->xAxis->grid();
+	ui.curve->addGraph();
+	ui.curve->graph(0)->setPen(QPen(Qt::blue));
+
 	//QHeaderView* headerView = tableWidget->verticalHeader();
 	//headerView->setHidden(true); //行名隐藏
 
@@ -543,6 +550,13 @@ int test::chartoint(unsigned char chr, unsigned char *cint)
 
 void test::onShowData( QString strCANID, QString strFrameFormat, QString strFrameType, QString dataLen, QString strData)
 {
+	static int key = 0;
+	qDebug() << "key = " << key;
+	ui.curve->graph(0)->addData(key, strData.toInt());
+	ui.curve->graph(0)->rescaleAxes(true);
+	ui.curve->xAxis->setRange(key, 160, Qt::AlignRight);
+	ui.curve->replot();
+	key++;
 	int nCount = ui.tableWidget->rowCount();
 	ui.tableWidget->insertRow(nCount);
 
@@ -567,6 +581,7 @@ void test::onShowData( QString strCANID, QString strFrameFormat, QString strFram
 	ui.tableWidget->setItem(nCount, 4, pItem);
 
 	ui.tableWidget->setRowHeight(nCount,23);
+
 }
 
 DWORD test::ReceiveThread(LPVOID lpParam)
@@ -582,7 +597,7 @@ DWORD test::ReceiveThread(LPVOID lpParam)
 	{
 		if (dlg->m_bExit)
 			break;
-		qDebug() << "recevie thread";
+		//qDebug() << "recevie thread";
 		len = VCI_Receive(dlg->m_devtype, dlg->m_index, dlg->m_cannum, frameinfo, 50, 200);
 		if (len <= 0)
 		{
