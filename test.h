@@ -33,6 +33,7 @@ public:
     int m_index;
 	static DWORD WINAPI ReceiveThread(LPVOID lpParam);
     void ShowInfo(QString str,int code);
+	void initCurve(void);
 
 signals:
 	void showData(QString strID, QString strFormat, QString strType, QString strLen, QString strData, QByteArray array);

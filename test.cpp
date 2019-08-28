@@ -99,18 +99,12 @@ test::test(QWidget *parent) : QDialog(parent), m_bFlag(1)
 
 	tableWidget->horizontalHeader()->setStretchLastSection(true);//关键
 
-
-	/*lry begin to init the plot*/
-	ui.curve->xAxis->setRange(0, 10);
-	ui.curve->xAxis->grid();
-	ui.curve->addGraph();
-	ui.curve->graph(0)->setPen(QPen(Qt::blue));
-
 	//QHeaderView* headerView = tableWidget->verticalHeader();
 	//headerView->setHidden(true); //行名隐藏
 
 	ui.comboBox_dev->setCurrentIndex(1);
 
+	initCurve();
 	//按钮操作
 	connect(ui.BtnConnect, SIGNAL(clicked()), this, SLOT(connectOrDisconnect()));
 	connect(ui.comboBox_dev, SIGNAL(currentIndexChanged(int)), this, SLOT(OnSelchangeComboDevType(int)));
@@ -659,5 +653,14 @@ DWORD test::ReceiveThread(LPVOID lpParam)
 		}
 	}
 	return 0;
+}
+
+void test::initCurve(void)
+{
+	/*lry begin to init the plot*/
+	ui.curve->xAxis->setRange(0, 10);
+	ui.curve->xAxis->grid();
+	ui.curve->addGraph();
+	ui.curve->graph(0)->setPen(QPen(Qt::blue));
 }
 
