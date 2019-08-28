@@ -2,6 +2,7 @@
 #define TEST_H
 #include <QObject>
 #include <QDialog>
+#include <QByteArray>
 #include "ui_test.h"
 #include <windows.h>
 #include "ControlCAN.h"
@@ -34,7 +35,7 @@ public:
     void ShowInfo(QString str,int code);
 
 signals:
-	void showData(QString strID, QString strFormat, QString strType, QString strLen, QString strData);
+	void showData(QString strID, QString strFormat, QString strType, QString strLen, QString strData, QByteArray array);
 
 private slots:
 		void connectOrDisconnect();
@@ -45,7 +46,7 @@ private slots:
         void OnSelchangeComboDevType(int nIndex);
         int strtodata(unsigned char *str, unsigned char *data,int len,int flag);
         int chartoint(unsigned char chr, unsigned char *cint);
-		void onShowData(QString strID, QString strFormat, QString strType, QString strLen, QString strData);
+		void onShowData(QString strID, QString strFormat, QString strType, QString strLen, QString strData, QByteArray array);
 
 private:
     Ui::Dialog ui;

@@ -117,7 +117,7 @@ test::test(QWidget *parent) : QDialog(parent), m_bFlag(1)
 	connect(ui.BtnStart, SIGNAL(clicked()), this, SLOT(OnButtonStartcan()));
 	connect(ui.BtnReset, SIGNAL(clicked()), this, SLOT(OnButtonResetcan()));
 	connect(ui.BtnSend, SIGNAL(clicked()), this, SLOT(OnButtonSend()));
-	connect(this, SIGNAL(showData(QString, QString, QString, QString, QString)), this, SLOT(onShowData(QString, QString, QString, QString, QString)));
+	connect(this, SIGNAL(showData(QString, QString, QString, QString, QString, QByteArray)), this, SLOT(onShowData(QString, QString, QString, QString, QString, QByteArray)));
 
 
 	m_hThreadRecv = nullptr;
@@ -548,11 +548,13 @@ int test::chartoint(unsigned char chr, unsigned char *cint)
 }
 
 
-void test::onShowData( QString strCANID, QString strFrameFormat, QString strFrameType, QString dataLen, QString strData)
+void test::onShowData( QString strCANID, QString strFrameFormat, QString strFrameType, QString dataLen, QString strData, QByteArray array)
 {
 	static int key = 0;
+	int y;
+	y = array[3];
 	qDebug() << "key = " << key;
-	ui.curve->graph(0)->addData(key, strData.toInt());
+	ui.curve->graph(0)->addData(key, y);
 	ui.curve->graph(0)->rescaleAxes(true);
 	ui.curve->xAxis->setRange(key, 160, Qt::AlignRight);
 	ui.curve->replot();
@@ -614,6 +616,7 @@ DWORD test::ReceiveThread(LPVOID lpParam)
 			QString strType;
 			QString strLen;
 			QString strData;
+			QByteArray array;
 
 			for (i = 0; i < len; i++)
 			{
@@ -644,11 +647,13 @@ DWORD test::ReceiveThread(LPVOID lpParam)
 						tmpstr.sprintf("%02x ", frameinfo[i].Data[j]);
 						strData.append(QString().sprintf("%02x", frameinfo[i].Data[j]));
 						strData.append(" ");
+						array[j] = frameinfo[i].Data[j];
 					}
 
 				}
 
-				emit dlg->showData(strCANID, strFormat, strType, strLen, strData);
+
+				emit dlg->showData(strCANID, strFormat, strType, strLen, strData, array);
 			}
 
 		}
